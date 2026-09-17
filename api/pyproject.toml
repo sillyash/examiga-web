@@ -1,0 +1,11 @@
+[project]
+name = "examiga-api"
+version = "0.1.0"
+description = "EX-AMIGA backend: tour dates and shoutouts API"
+requires-python = ">=3.12"
+dependencies = [
+    "flask>=3.1,<4",
+    "flask-sqlalchemy>=3.1,<4",
+    "flask-cors>=5.0,<6",
+    "gunicorn>=23.0,<24",
+]
