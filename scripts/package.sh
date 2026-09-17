@@ -27,6 +27,7 @@ rsync -a \
   --exclude '__pycache__' \
   --exclude '*.pyc' \
   --exclude '*.db' \
+  --exclude '.nfs*' \
   --exclude '.git' \
   --exclude 'CLAUDE.md' \
   --exclude '*.tar.gz' \
