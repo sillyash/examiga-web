@@ -14,17 +14,6 @@ class TourDate(db.Model):
     is_sold_out = db.Column(db.Boolean, nullable=False, default=False)
     notes = db.Column(db.String(300))
 
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "date": self.date.isoformat(),
-            "city": self.city,
-            "venue": self.venue,
-            "ticket_url": self.ticket_url,
-            "is_sold_out": self.is_sold_out,
-            "notes": self.notes,
-        }
-
 
 class Shoutout(db.Model):
     __tablename__ = "shoutouts"
@@ -33,11 +22,3 @@ class Shoutout(db.Model):
     name = db.Column(db.String(80), nullable=False)
     message = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "message": self.message,
-            "created_at": self.created_at.isoformat(),
-        }
