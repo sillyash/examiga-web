@@ -5,6 +5,14 @@
             <h1>EX-AMIGA</h1>
         </div>
 
+        <div id="navbar">
+            <RouterLink to="/" class="nav-link">Home</RouterLink>
+            <RouterLink to="/shows" class="nav-link">Shows</RouterLink>
+            <RouterLink to="/guestbook" class="nav-link">Guestbook</RouterLink>
+            <RouterLink to="/about" class="nav-link">About</RouterLink>
+            <RouterLink to="/contact" class="nav-link">Contact</RouterLink>
+        </div>
+
         <ThemeToggle />
     </header>
 </template>
@@ -22,6 +30,22 @@
     justify-content: space-between;
     padding: 1rem;
     border-bottom: 2px solid var(--color-border);
+}
+
+#navbar {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-link {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.nav-link.router-link-exact-active {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: bold;
 }
 </style>
 
