@@ -1,11 +1,21 @@
 <template>
     <header class="site-header">
-        <h1>EX-AMIGA</h1>
+        <div id="branding">
+            <img src="/logo.jpg" alt="EX-AMIGA Logo" width="100" height="100" />
+            <h1>EX-AMIGA</h1>
+        </div>
+
         <ThemeToggle />
     </header>
 </template>
 
 <style scoped>
+#branding {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .site-header {
     display: flex;
     align-items: center;
