@@ -1,16 +1,17 @@
 from pathlib import Path
 
-from flask import Flask, jsonify, request
+from apiflask import APIFlask
 from flask_cors import CORS
 
 from db import db
 from models import Shoutout, TourDate
+from schemas import ShoutoutIn, ShoutoutOut, TourDateOut
 
 BASE_DIR = Path(__file__).resolve().parent
 
 
 def create_app():
-    app = Flask(__name__)
+    app = APIFlask(__name__, title="EX-AMIGA API", version="1.0.0")
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{BASE_DIR / 'examiga.db'}"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -21,27 +22,29 @@ def create_app():
         db.create_all()
 
     @app.get("/api/tour-dates")
+    @app.output(TourDateOut(many=True))
+    @app.doc(tags=["Tour dates"])
     def list_tour_dates():
-        tour_dates = TourDate.query.order_by(TourDate.date.asc()).all()
-        return jsonify([t.to_dict() for t in tour_dates])
+        """List all tour dates, soonest first."""
+        return TourDate.query.order_by(TourDate.date.asc()).all()
 
     @app.get("/api/shoutouts")
+    @app.output(ShoutoutOut(many=True))
+    @app.doc(tags=["Shoutouts"])
     def list_shoutouts():
-        shoutouts = Shoutout.query.order_by(Shoutout.created_at.desc()).all()
-        return jsonify([s.to_dict() for s in shoutouts])
+        """List all fan shoutouts, newest first."""
+        return Shoutout.query.order_by(Shoutout.created_at.desc()).all()
 
     @app.post("/api/shoutouts")
-    def create_shoutout():
-        payload = request.get_json(silent=True) or {}
-        name = (payload.get("name") or "").strip()
-        message = (payload.get("message") or "").strip()
-        if not name or not message:
-            return jsonify({"error": "name and message are required"}), 400
-
-        shoutout = Shoutout(name=name[:80], message=message)
+    @app.input(ShoutoutIn)
+    @app.output(ShoutoutOut, status_code=201)
+    @app.doc(tags=["Shoutouts"])
+    def create_shoutout(json_data):
+        """Leave a shoutout for the band."""
+        shoutout = Shoutout(name=json_data["name"], message=json_data["message"])
         db.session.add(shoutout)
         db.session.commit()
-        return jsonify(shoutout.to_dict()), 201
+        return shoutout
 
     return app
 
