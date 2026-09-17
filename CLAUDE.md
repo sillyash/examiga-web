@@ -20,9 +20,7 @@ required buttons, grading rubric). Final submission archive:
   "RAPPORT" naming, this is the French-language project report source, rendered to PDF
   by `scripts/md_to_pdf.sh`.
 - `README.md` (root) — links out to `web/README.md`, `api/README.md`, `DEPLOYMENT.md`.
-- `DEPLOYMENT.md` — real-world hosting (GitHub Pages / Raspberry Pi). No Docker
-  anywhere (both `Dockerfile`s were deleted) — prod runs the same `uv`/`npm` tooling
-  as dev, with a systemd unit example for keeping gunicorn alive on the Pi.
+- `DEPLOYMENT.md` — real-world hosting (GitHub Pages / Raspberry Pi).
 
 ## Frontend stack (`web/`)
 
