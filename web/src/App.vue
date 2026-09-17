@@ -1,21 +1,21 @@
-<script setup lang="ts">
-import ThemeToggle from '@/components/ThemeToggle.vue'
-</script>
-
 <template>
-  <header class="site-header">
-    <h1>EX-AMIGA</h1>
-    <ThemeToggle />
-  </header>
+  <AppHeader />
 
   <main>
-    <h2>You did it!</h2>
-    <p>
-      Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-      documentation
-    </p>
+    <p>A</p>
   </main>
 </template>
+
+<script lang="ts">
+import AppHeader from '@/components/AppHeader.vue'
+
+export default {
+  name: 'App',
+  components: {
+    AppHeader,
+  },
+}
+</script>
 
 <style scoped>
 .site-header {
