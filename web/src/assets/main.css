@@ -1,5 +1,5 @@
 :root {
-  --color-bg: #f4e04d;
+  --color-bg: #fffe6f;
   --color-surface: #fff7d6;
   --color-text: #141414;
   --color-accent: #c81e1e;
@@ -9,9 +9,9 @@
 :root[data-theme='night'] {
   --color-bg: #141414;
   --color-surface: #1f1f1f;
-  --color-text: #f4e04d;
+  --color-text: #fffe6f;
   --color-accent: #e8432e;
-  --color-border: #f4e04d;
+  --color-border: #fffe6f;
 }
 
 body {
