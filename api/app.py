@@ -2,6 +2,7 @@ from pathlib import Path
 
 from apiflask import APIFlask
 from flask_cors import CORS
+from flask import redirect
 
 from db import db
 from models import Shoutout, TourDate
@@ -20,6 +21,11 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+
+    @app.get("/")
+    @app.doc(hide=True)
+    def index():
+        return redirect("/docs")
 
     @app.get("/api/tour-dates")
     @app.output(TourDateOut(many=True))
