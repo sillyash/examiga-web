@@ -1,0 +1,31 @@
+:root {
+  --color-bg: #fdf6f0;
+  --color-text: #241623;
+  --color-accent: #ff6f91;
+  --color-border: #241623;
+}
+
+:root[data-theme='night'] {
+  --color-bg: #12081a;
+  --color-text: #f5e9ff;
+  --color-accent: #ff9fc0;
+  --color-border: #f5e9ff;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+a {
+  color: var(--color-accent);
+}
