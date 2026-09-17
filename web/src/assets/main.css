@@ -4,6 +4,8 @@
   --color-text: #141414;
   --color-accent: #c81e1e;
   --color-border: #141414;
+  --color-selection-bg: #7a1414;
+  --color-selection-text: #fff7d6;
 }
 
 :root[data-theme='night'] {
@@ -12,6 +14,8 @@
   --color-text: #f4e04d;
   --color-accent: #e8432e;
   --color-border: #f4e04d;
+  --color-selection-bg: #9c2323;
+  --color-selection-text: #f4e04d;
 }
 
 body {
@@ -30,4 +34,9 @@ body {
 
 a {
   color: var(--color-accent);
+}
+
+::selection {
+  background-color: var(--color-selection-bg);
+  color: var(--color-selection-text);
 }
