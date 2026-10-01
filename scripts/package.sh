@@ -30,6 +30,7 @@ rsync -a \
   --exclude '.nfs*' \
   --exclude '.git' \
   --exclude 'CLAUDE.md' \
+  --exclude 'docs/TODO.md' \
   --exclude '*.tar.gz' \
   --exclude 'sujet.pdf' \
   ./ "$DEST/"
