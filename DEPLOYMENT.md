@@ -61,6 +61,8 @@ server {
 
     location /api/ {
         proxy_pass http://127.0.0.1:5000/api/;
+        # Real client IP for the shoutout rate limit (app.py uses ProxyFix).
+        proxy_set_header X-Forwarded-For $remote_addr;
     }
 
     location / {
