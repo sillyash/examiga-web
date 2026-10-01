@@ -1,17 +1,17 @@
 <template>
-	<footer class="app-footer">
+	<footer class="site-footer">
 		<p>&copy; {{ new Date().getFullYear() }} EX-AMIGA. All rights reserved.</p>
 	</footer>
 </template>
 
 <style scoped>
-.app-footer {
+.site-footer {
 	padding: 1rem;
 	text-align: center;
 	border-top: 2px solid var(--color-border);
 }
 
-.app-footer p {
+.site-footer p {
 	margin: 0;
 }
 </style>
