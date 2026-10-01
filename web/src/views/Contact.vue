@@ -37,6 +37,11 @@
   max-height: 60px;
 
   margin-right: 1rem;
+  transition: filter var(--theme-transition-duration) ease-in-out;
+}
+
+:root[data-theme='night'] .social-link > img {
+  filter: invert(1);
 }
 </style>
 
