@@ -46,24 +46,9 @@ TOUR_DATES = [
 # POST /api/shoutouts endpoint, so this only fills the table when it's empty.
 SHOUTOUTS = [
     dict(
-        name="Casey54",
-        message="Saw you guys in a basement in 2019, still think about that set weekly.",
-        created_at=datetime(2026, 9, 1, 14, 32),
-    ),
-    dict(
-        name="Jordan",
-        message="Please come to Cleveland!!! we need midwest emo out here too",
+        name="AlexCharp",
+        message="Venez à Evry!!! On a besoin de emo ici aussi...",
         created_at=datetime(2026, 9, 5, 9, 12),
-    ),
-    dict(
-        name="Rileyyy",
-        message="the new EP has been on repeat since it dropped, twinkly riffs go crazy",
-        created_at=datetime(2026, 9, 10, 20, 45),
-    ),
-    dict(
-        name="Sam",
-        message="thank you for playing that one song that made me cry in a Guitar Center parking lot",
-        created_at=datetime(2026, 9, 14, 23, 58),
     ),
 ]
 
