@@ -30,12 +30,7 @@ export default {
 }
 
 .site-header {
-  display: flex;
   width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  border-bottom: 2px solid var(--color-border);
 }
 
 .site-footer {
