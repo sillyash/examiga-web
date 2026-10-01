@@ -1,6 +1,6 @@
 from apiflask import Schema
-from apiflask.fields import Boolean, Date, DateTime, Integer, String, Time
-from apiflask.validators import Length
+from apiflask.fields import Boolean, Date, DateTime, Integer, List, Nested, String, Time
+from apiflask.validators import Length, Range
 
 
 class TourDateOut(Schema):
@@ -18,7 +18,9 @@ class TourDateOut(Schema):
 
 class ShoutoutIn(Schema):
     name = String(required=True, validate=Length(min=1, max=80))
-    message = String(required=True, validate=Length(min=1))
+    message = String(required=True, validate=Length(min=1, max=500))
+    # Honeypot: hidden in the form, so only bots fill it in. Must stay empty.
+    website = String(load_default="", validate=Length(max=0))
 
 
 class ShoutoutOut(Schema):
@@ -26,3 +28,14 @@ class ShoutoutOut(Schema):
     name = String()
     message = String()
     created_at = DateTime()
+
+
+class ShoutoutQuery(Schema):
+    limit = Integer(load_default=10, validate=Range(min=1, max=50))
+    # Cursor: id of the last shoutout already shown; returns the ones posted before it.
+    before = Integer(load_default=None)
+
+
+class ShoutoutPage(Schema):
+    shoutouts = List(Nested(ShoutoutOut))
+    has_more = Boolean()
