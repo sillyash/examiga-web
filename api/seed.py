@@ -25,7 +25,7 @@ TOUR_DATES = [
         venue="La Maz",
         address="9 rue Turbigo 75001 Paris",
         ticket_url=None,
-        info_url=None,
+        info_url="https://www.instagram.com/p/Dd6kf-0RCPq/",
         is_sold_out=False,
         notes="Co-plateau ! Interested ? Reach contact@examigaband.com",
     ),
