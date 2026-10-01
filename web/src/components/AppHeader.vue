@@ -1,9 +1,9 @@
 <template>
   <header class="site-header">
-    <div id="branding">
+    <RouterLink id="branding" to="/">
       <img src="/logo.jpg" alt="EX-AMIGA Logo" width="100" height="100" />
       <h1>EX-AMIGA</h1>
-    </div>
+    </RouterLink>
 
     <div id="navbar">
       <RouterLink to="/" class="nav-link">Home</RouterLink>
@@ -22,6 +22,9 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  /* It's a home link, but should look like plain branding. */
+  color: inherit;
+  text-decoration: none;
 }
 
 .site-header {
