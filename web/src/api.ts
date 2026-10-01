@@ -4,9 +4,14 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? ''
 export interface TourDate {
   id: number
   date: string
+  // "HH:MM:SS", or null if the set time isn't announced yet
+  time: string | null
   city: string
   venue: string
+  address: string | null
   ticket_url: string | null
+  // event page / socials link for the show
+  info_url: string | null
   is_sold_out: boolean
   notes: string | null
 }

@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, time
 
 from app import create_app
 from db import db
@@ -8,36 +8,37 @@ from models import Shoutout, TourDate
 # to update the site. Every run replaces the whole tour_dates table with this list.
 TOUR_DATES = [
     dict(
-        date=date(2026, 10, 3),
-        city="Chicago, IL",
-        venue="The Rathskeller",
-        ticket_url="https://example.com/tickets/chicago",
-        is_sold_out=False,
-        notes="w/ Static Orchard, Fencewalker",
-    ),
-    dict(
-        date=date(2026, 10, 14),
-        city="Columbus, OH",
-        venue="Cafe Mustache",
-        ticket_url="https://example.com/tickets/columbus",
-        is_sold_out=True,
-        notes=None,
-    ),
-    dict(
-        date=date(2026, 11, 8),
-        city="St. Louis, MO",
-        venue="Foam House",
+        date=date(2026, 10, 9),
+        time=time(20, 0),
+        city="Paris",
+        venue="La Pointe Lafayette",
+        address="230 Rue La Fayette, Paris, FR 75010",
         ticket_url=None,
+        info_url=None,
         is_sold_out=False,
-        notes="DIY all-ages show",
+        notes="w/ Pericolo !!",
     ),
     dict(
-        date=date(2026, 12, 10),
-        city="Kansas City, MO",
-        venue="The Tin Ceiling",
-        ticket_url="https://example.com/tickets/kc",
+        date=date(2026, 10, 10),
+        time=None,
+        city="Paris",
+        venue="La Maz",
+        address="9 rue Turbigo 75001 Paris",
+        ticket_url=None,
+        info_url=None,
         is_sold_out=False,
-        notes="w/ Static Orchard",
+        notes="Co-plateau ! Interested ? Reach contact@examigaband.com",
+    ),
+    dict(
+        date=date(2026, 9, 8),
+        time=time(19, 30),
+        city="Palaiseau",
+        venue="Télécom Paris",
+        address="19 Place Marguerite Perey, 91120 Palaiseau",
+        ticket_url=None,
+        info_url=None,
+        is_sold_out=False,
+        notes="Téléfest :3",
     ),
 ]
 
