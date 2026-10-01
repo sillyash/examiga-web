@@ -40,6 +40,6 @@ export default {
 main {
   flex: 1 0 auto;
   padding: 1rem;
-  width: 90%;
+  width: 70%;
 }
 </style>

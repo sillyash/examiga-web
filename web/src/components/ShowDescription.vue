@@ -267,6 +267,7 @@ function escapeIcs(text: string): string {
 
 .notes {
   margin: 0.5rem 0 0;
+  overflow-wrap: anywhere;
   font-style: italic;
   font-size: 1.25rem;
 }
@@ -397,16 +398,37 @@ function escapeIcs(text: string): string {
     font-size: 2.5rem;
   }
 
+  /* Not enough room for a third column: the calendar stub tears off the bottom instead. */
+  .ticket {
+    flex-wrap: wrap;
+  }
+
   .ticket-calendar {
-    width: 4rem;
+    flex-direction: row;
+    flex-basis: 100%;
+    gap: 0.5rem;
+    padding: 0.4rem;
+    border-left: none;
+    border-top: 3px dashed var(--color-border);
+  }
+
+  .ticket-calendar::before,
+  .ticket-calendar::after {
+    top: calc(var(--notch-size) / -2 - 1.5px);
+    bottom: auto;
+  }
+
+  .ticket-calendar::before {
+    left: calc(var(--notch-size) / -2 - 3px);
+  }
+
+  .ticket-calendar::after {
+    left: auto;
+    right: calc(var(--notch-size) / -2 - 3px);
   }
 
   .calendar-plus {
-    font-size: 2.25rem;
-  }
-
-  .calendar-label {
-    font-size: 0.8rem;
+    font-size: 1.75rem;
   }
 
   .venue {
