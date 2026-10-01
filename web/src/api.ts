@@ -23,9 +23,17 @@ export interface Shoutout {
   created_at: string
 }
 
+export interface ShoutoutPage {
+  shoutouts: Shoutout[]
+  // true if older shoutouts are left to load
+  has_more: boolean
+}
+
 export interface ShoutoutInput {
   name: string
   message: string
+  // honeypot, must stay empty (see ShoutoutForm.vue)
+  website?: string
 }
 
 export class ApiError extends Error {
@@ -60,9 +68,12 @@ export function getTourDates(): Promise<TourDate[]> {
   return request('/api/tour-dates')
 }
 
-/** List all fan shoutouts, newest first. */
-export function getShoutouts(): Promise<Shoutout[]> {
-  return request('/api/shoutouts')
+/**
+ * List fan shoutouts, newest first, 10 at a time. Pass the id of the last shoutout
+ * already shown as `before` to get the next (older) page.
+ */
+export function getShoutouts(before?: number): Promise<ShoutoutPage> {
+  return request(before === undefined ? '/api/shoutouts' : `/api/shoutouts?before=${before}`)
 }
 
 /** Leave a shoutout for the band. */
