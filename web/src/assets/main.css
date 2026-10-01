@@ -6,6 +6,8 @@
   --color-border: #141414;
   --color-selection-bg: #7a1414;
   --color-selection-text: #fff7d6;
+
+  --theme-transition-duration: 0.3s;
 }
 
 :root[data-theme='night'] {
@@ -25,8 +27,8 @@ body {
   font-family: 'VT323', monospace;
   font-size: 1.5rem;
   transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+    background-color var(--theme-transition-duration) ease,
+    color var(--theme-transition-duration) ease;
 }
 
 a {
