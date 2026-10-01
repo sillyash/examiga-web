@@ -7,13 +7,13 @@ import App from '@/App.vue'
 import router from '@/router'
 
 const i18n = createI18n({
-    locale: 'fr',
-    fallbackLocale: 'en'
+  locale: 'fr',
+  fallbackLocale: 'en',
 })
 
 const app = createApp(App)
 
-app.use(i18n);
+app.use(i18n)
 app.use(createPinia())
 app.use(router)
 

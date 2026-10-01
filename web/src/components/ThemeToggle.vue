@@ -34,7 +34,15 @@ const { theme, toggleTheme } = useTheme()
         <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
         <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
       </svg>
-      <svg v-else key="moon" class="theme-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+      <svg
+        v-else
+        key="moon"
+        class="theme-icon"
+        viewBox="0 0 24 24"
+        width="22"
+        height="22"
+        fill="currentColor"
+      >
         <path d="M20 12a8 8 0 1 1-8-8 6 6 0 0 0 8 8z" />
       </svg>
     </Transition>
