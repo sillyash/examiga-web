@@ -21,7 +21,6 @@ Work parked for later. Not shipped in the submission archive (excluded in
 
 ## Responsive / adaptive styling
 
-- [ ] Horizontal scrollbar on every page (seen at both 390px and 1000px wide)
 - [ ] `main { width: 70% }` in `App.vue` squeezes content on phones (use `max-width` instead)
 - [ ] Header/nav at phone width (nav wraps onto 2 lines, theme toggle on its own row)
 - [ ] Re-check tickets and guestbook at 390 / 768 / 1280px
