@@ -29,19 +29,14 @@ Work parked for later. Not shipped in the submission archive (excluded in
 
 ## Polish
 
-- [ ] `~` around the city name renders as `ᴺ` in VT323, pick another glyph
-- [ ] Address `geo:` link does nothing on desktop Firefox / iOS: switch to plain
-      text or a web map link
-- [ ] Calendar events hard-code a 2h duration (no end time in the API)
-- [ ] `Contact.vue`: `id="#socials"` (the `#` means the `#socials` CSS never applies),
-      images missing `alt`, links missing `rel="noopener noreferrer"`
 - [ ] Home and About pages are empty
 - [ ] Guestbook spam protection (honeypot field) if it gets spammed
 
 ## Submission
 
-- [ ] `docs/RAPPORT.md` → `rapport.pdf` (≤ 2 pages): technologies (justify file counts:
-      client is over the 15-file limit), mini user manual, 1–2 technical details
+- [ ] `docs/RAPPORT.md` → `rapport.pdf` (≤ 2 pages): technologies (client is over the
+      15-file limit — justify the overage in the report rather than minimizing it
+      further), mini user manual, 1–2 technical details
 - [ ] Screenshots of every page × fr/en × day/night in the report
 - [ ] Root README up to date
 - [ ] `scripts/package.sh`, check archive ≤ 3MB
