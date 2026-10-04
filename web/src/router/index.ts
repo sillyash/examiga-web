@@ -3,7 +3,6 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Shows from '@/views/Shows.vue'
 import Guestbook from '@/views/Guestbook.vue'
-import About from '@/views/About.vue'
 import Contact from '@/views/Contact.vue'
 
 const router = createRouter({
@@ -12,7 +11,8 @@ const router = createRouter({
     { path: '/', name: 'home', component: Home },
     { path: '/shows', name: 'shows', component: Shows },
     { path: '/guestbook', name: 'guestbook', component: Guestbook },
-    { path: '/about', name: 'about', component: About },
+    // About was merged into Home; keep old links working.
+    { path: '/about', redirect: '/' },
     { path: '/contact', name: 'contact', component: Contact },
   ],
 })

@@ -3,7 +3,6 @@
     "home": "Home",
     "shows": "Shows",
     "guestbook": "Guestbook",
-    "about": "About",
     "contact": "Contact"
   },
   "header": {
@@ -21,11 +20,28 @@
     "rights": "© {year} EX-AMIGA. All rights reserved."
   },
   "pages": {
-    "home": "Home",
     "shows": "Shows",
     "guestbook": "Guestbook",
-    "about": "About",
     "contact": "Contact"
+  },
+  "home": {
+    "photoAlt": "EX-AMIGA",
+    "tagline": "midwest emo from Paris ♡",
+    "toShows": "next shows →",
+    "toGuestbook": "sign the guestbook ✎",
+    "nextShow": "Next show",
+    "allShows": "all dates →",
+    "whoWeAre": "Who we are",
+    "bio": "TODO: a few lines about the band, how you met, what you sound like.",
+    "members": [
+      { "name": "TODO name", "role": "vocals, guitar" },
+      { "name": "TODO name", "role": "guitar" },
+      { "name": "TODO name", "role": "bass" },
+      { "name": "TODO name", "role": "drums" }
+    ],
+    "influencesLabel": "For fans of:",
+    "influences": "TODO: American Football, Cap'n Jazz, …",
+    "fromGuestbook": "From the guestbook"
   },
   "common": {
     "retry": "try again"
