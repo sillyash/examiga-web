@@ -27,10 +27,8 @@ About was merged into Home (hero, next show, who we are, latest shoutouts).
 
 ## 4. Submission
 
-- [ ] `npm run build` fails on `main`: `eslint.config.ts` imports `defineConfigWithVueTs` /
-      `vueTsConfigs` as named exports that the installed `@vue/eslint-config-typescript`
-      doesn't have (also crashes `npm run lint`). `scripts/package.sh` runs the build,
-      so this blocks the archive.
+- [x] `npm run build` / CI `npm ci`: `@vue/eslint-config-typescript` back on ^14.9.0
+      (14.0.1 lacks `defineConfigWithVueTs` and only allows eslint 9)
 
 - [ ] `docs/RAPPORT.md` (empty) → `just pdf`, ≤ 2 pages: technologies (justify
       `web/src` being over the 15-file limit rather than cutting files), mini user
