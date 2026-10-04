@@ -58,14 +58,14 @@ const SHOUTOUT_PREVIEW_COUNT = 3
 type Role = 'vocals' | 'guitar' | 'bass' | 'drums'
 
 const MEMBERS: { name: string; roles: Role[] }[] = [
-  { name: 'TODO name', roles: ['vocals', 'guitar'] },
-  { name: 'TODO name 2', roles: ['guitar'] },
-  { name: 'TODO name 3', roles: ['bass'] },
-  { name: 'TODO name 4', roles: ['drums'] },
+  { name: 'Gaspar', roles: ['vocals', 'guitar'] },
+  { name: 'Mathilde', roles: ['guitar'] },
+  { name: 'Mathis', roles: ['bass'] },
+  { name: 'Ashley', roles: ['drums'] },
 ]
 
 // Bands that inspired us, shown as "for fans of: …".
-const INFLUENCES = ['American Football', "Cap'n Jazz", 'TODO']
+const INFLUENCES = ['American Football', 'Title Fight', 'Modern Baseball', 'Mom Jeans']
 
 // Today as "YYYY-MM-DD" in local time, comparable as a string with TourDate.date
 // (same as in Shows.vue).
