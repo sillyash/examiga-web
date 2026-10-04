@@ -1,5 +1,5 @@
 <template>
-  <PageLayout title="Home">
+  <PageLayout :title="$t('pages.home')">
     <!-- home page content -->
   </PageLayout>
 </template>

@@ -1,0 +1,97 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "shows": "Concerts",
+    "guestbook": "Livre d'or",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "header": {
+    "logoAlt": "Logo EX-AMIGA"
+  },
+  "theme": {
+    "toNight": "Passer au thème nuit",
+    "toDay": "Passer au thème jour"
+  },
+  "lang": {
+    "short": "EN",
+    "switch": "Passer en anglais"
+  },
+  "footer": {
+    "rights": "© {year} EX-AMIGA. Tous droits réservés."
+  },
+  "pages": {
+    "home": "Accueil",
+    "shows": "Concerts",
+    "guestbook": "Livre d'or",
+    "about": "À propos",
+    "contact": "Contact"
+  },
+  "common": {
+    "retry": "réessayer"
+  },
+  "shows": {
+    "loading": "chargement des concerts…",
+    "loadError": "impossible de charger les concerts :(",
+    "upcoming": "À venir",
+    "past": "Concerts passés",
+    "none": "aucun concert prévu pour l'instant, restez connecté·es ♡"
+  },
+  "ticket": {
+    "moreInfo": "plus d'infos ↗",
+    "seeYou": "à la prochaine ♡",
+    "soldOutMsg": "plus de places, désolé·es :(",
+    "getTickets": "prendre des places →",
+    "atDoor": "places sur place",
+    "soldOutStamp": "COMPLET",
+    "soldOutLabel": "Complet",
+    "addToCalendar": "ajouter à l'agenda"
+  },
+  "guestbook": {
+    "loading": "chargement du livre d'or…",
+    "loadError": "impossible de charger le livre d'or :(",
+    "empty": "personne n'a encore signé, soyez le·la premier·e ♡",
+    "loadMoreError": "impossible d'en charger plus :(",
+    "loadMore": "voir plus ↓",
+    "loadingMore": "chargement…"
+  },
+  "shoutoutForm": {
+    "title": "signer le livre d'or ✎",
+    "nameLabel": "ton nom",
+    "messageLabel": "ton message",
+    "messagePlaceholder": "dis coucou au groupe ♡",
+    "thanks": "merci ♡",
+    "send": "signer !",
+    "sending": "envoi…",
+    "rateLimited": "doucement ♡ réessaie dans une minute",
+    "sendError": "l'envoi a échoué :( on réessaie ?"
+  },
+  "contact": {
+    "email": "E-mail",
+    "phone": "Téléphone"
+  },
+  "contactForm": {
+    "title": "envoie-nous un message ✎",
+    "nameLabel": "ton nom",
+    "emailLabel": "ton e-mail",
+    "emailPlaceholder": "toi{'@'}exemple.fr",
+    "inquiryLabel": "type de demande",
+    "choose": "choisis…",
+    "inquiry": {
+      "booking": "Booking",
+      "press": "Presse",
+      "fanMail": "Message de fan",
+      "other": "Autre"
+    },
+    "messageLabel": "ton message",
+    "messagePlaceholder": "dis coucou au groupe ♡",
+    "errors": {
+      "name": "dis-nous qui tu es ♡",
+      "email": "il nous faut un e-mail pour te répondre",
+      "inquiryType": "choisis un type de demande",
+      "message": "quoi de neuf ?"
+    },
+    "opening": "ouverture de ta messagerie…",
+    "send": "envoyer"
+  }
+}

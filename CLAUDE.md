@@ -31,8 +31,12 @@ Default `create-vue` scaffold, essentially untouched from the generator:
 - **Vite 8.2** as the build tool/dev server, with `@` aliased to `web/src/`
 - **Pinia 4** for state (only store so far is the generator's demo `stores/counter.ts`)
 - **Vue Router 5** (`src/router/index.ts`) — routes array is currently empty
-- **vue-i18n** (locale `fr`, fallback `en`), wired up in `main.ts` — not yet used for
-  the assignment's required language-toggle button
+- **vue-i18n** (composition mode, `legacy: false`), set up in `main.ts` with messages from
+  `src/locales/{fr,en}.json` (same keys in both). Locale comes from `localStorage`
+  (`examiga-locale`), then the browser language, defaulting to `fr`; a `watch` in
+  `main.ts` saves it and syncs `<html lang>`. `src/components/LanguageToggle.vue` sits
+  next to `ThemeToggle` in the header. Templates use `$t('…')`; form errors are stored
+  as message keys (not text) so they re-translate when the language changes.
 - Linting/formatting: **oxlint** + **eslint** (`eslint-plugin-vue`, `eslint-plugin-oxlint`)
   + **Prettier**
 - Day/night theming: `src/composables/useTheme.ts` (module-scoped `ref`, persisted to

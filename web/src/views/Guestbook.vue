@@ -1,22 +1,28 @@
 <template>
-  <PageLayout title="Guestbook">
+  <PageLayout :title="$t('pages.guestbook')">
     <ShoutoutForm @posted="addShoutout" />
 
-    <p v-if="loading" class="status">loading the guestbook…</p>
+    <p v-if="loading" class="status">{{ $t('guestbook.loading') }}</p>
 
     <p v-else-if="error" class="status">
-      couldn't load the guestbook :(
-      <button type="button" @click="loadShoutouts">try again</button>
+      {{ $t('guestbook.loadError') }}
+      <button type="button" @click="loadShoutouts">{{ $t('common.retry') }}</button>
     </p>
 
     <template v-else>
       <ShoutoutCard v-for="shoutout in shoutouts" :key="shoutout.id" :shoutout="shoutout" />
-      <p v-if="shoutouts.length === 0" class="status">nobody signed yet, be the first ♡</p>
+      <p v-if="shoutouts.length === 0" class="status">{{ $t('guestbook.empty') }}</p>
 
       <div v-if="hasMore" class="status">
-        <p v-if="loadMoreError">couldn't load more :(</p>
+        <p v-if="loadMoreError">{{ $t('guestbook.loadMoreError') }}</p>
         <button type="button" :disabled="loadingMore" @click="loadMore">
-          {{ loadingMore ? 'loading…' : loadMoreError ? 'try again' : 'load more ↓' }}
+          {{
+            loadingMore
+              ? $t('guestbook.loadingMore')
+              : loadMoreError
+                ? $t('common.retry')
+                : $t('guestbook.loadMore')
+          }}
         </button>
       </div>
     </template>

@@ -1,8 +1,8 @@
 <template>
   <form class="contact-form" novalidate @submit.prevent="submit">
-    <h2>send us a message ✎</h2>
+    <h2>{{ $t('contactForm.title') }}</h2>
 
-    <label for="contact-name">your name</label>
+    <label for="contact-name">{{ $t('contactForm.nameLabel') }}</label>
     <input
       id="contact-name"
       v-model="name"
@@ -11,46 +11,47 @@
       placeholder="Casey54"
       :aria-invalid="Boolean(fieldErrors.name)"
     />
-    <p v-if="fieldErrors.name" class="error">{{ fieldErrors.name }}</p>
+    <p v-if="fieldErrors.name" class="error">{{ $t(fieldErrors.name) }}</p>
 
-    <label for="contact-email">your email</label>
+    <label for="contact-email">{{ $t('contactForm.emailLabel') }}</label>
     <input
       id="contact-email"
       v-model="email"
       type="email"
       autocomplete="email"
-      placeholder="you@example.com"
+      :placeholder="$t('contactForm.emailPlaceholder')"
       :aria-invalid="Boolean(fieldErrors.email)"
     />
-    <p v-if="fieldErrors.email" class="error">{{ fieldErrors.email }}</p>
+    <p v-if="fieldErrors.email" class="error">{{ $t(fieldErrors.email) }}</p>
 
-    <label for="contact-inquiry-type">inquiry type</label>
+    <label for="contact-inquiry-type">{{ $t('contactForm.inquiryLabel') }}</label>
     <select
       id="contact-inquiry-type"
       v-model="inquiryType"
       :aria-invalid="Boolean(fieldErrors.inquiryType)"
     >
-      <option value="" disabled>choose one…</option>
-      <option value="Booking">Booking</option>
-      <option value="Press">Press</option>
-      <option value="Fan mail">Fan mail</option>
-      <option value="Other">Other</option>
+      <option value="" disabled>{{ $t('contactForm.choose') }}</option>
+      <!-- Values stay in English: they become the email subject sent to the band. -->
+      <option value="Booking">{{ $t('contactForm.inquiry.booking') }}</option>
+      <option value="Press">{{ $t('contactForm.inquiry.press') }}</option>
+      <option value="Fan mail">{{ $t('contactForm.inquiry.fanMail') }}</option>
+      <option value="Other">{{ $t('contactForm.inquiry.other') }}</option>
     </select>
-    <p v-if="fieldErrors.inquiryType" class="error">{{ fieldErrors.inquiryType }}</p>
+    <p v-if="fieldErrors.inquiryType" class="error">{{ $t(fieldErrors.inquiryType) }}</p>
 
-    <label for="contact-message">your message</label>
+    <label for="contact-message">{{ $t('contactForm.messageLabel') }}</label>
     <textarea
       id="contact-message"
       v-model="message"
       rows="4"
-      placeholder="say hi to the band ♡"
+      :placeholder="$t('contactForm.messagePlaceholder')"
       :aria-invalid="Boolean(fieldErrors.message)"
     ></textarea>
-    <p v-if="fieldErrors.message" class="error">{{ fieldErrors.message }}</p>
+    <p v-if="fieldErrors.message" class="error">{{ $t(fieldErrors.message) }}</p>
 
     <div class="form-footer">
-      <p v-if="opened" class="thanks" role="status">opening your email client…</p>
-      <button type="submit">send</button>
+      <p v-if="opened" class="thanks" role="status">{{ $t('contactForm.opening') }}</p>
+      <button type="submit">{{ $t('contactForm.send') }}</button>
     </div>
   </form>
 </template>
@@ -66,6 +67,7 @@ export default {
       inquiryType: '',
       message: '',
       opened: false,
+      // field -> i18n key of its error, translated in the template
       fieldErrors: {} as Record<string, string>,
     }
   },
@@ -75,10 +77,10 @@ export default {
       this.opened = false
       this.fieldErrors = {}
 
-      if (!this.name.trim()) this.fieldErrors.name = 'tell us who you are ♡'
-      if (!this.email.trim()) this.fieldErrors.email = 'we need an email to reply to'
-      if (!this.inquiryType) this.fieldErrors.inquiryType = 'pick an inquiry type'
-      if (!this.message.trim()) this.fieldErrors.message = "what's up?"
+      if (!this.name.trim()) this.fieldErrors.name = 'contactForm.errors.name'
+      if (!this.email.trim()) this.fieldErrors.email = 'contactForm.errors.email'
+      if (!this.inquiryType) this.fieldErrors.inquiryType = 'contactForm.errors.inquiryType'
+      if (!this.message.trim()) this.fieldErrors.message = 'contactForm.errors.message'
       if (Object.keys(this.fieldErrors).length > 0) return
 
       const subject = encodeURIComponent(this.inquiryType)

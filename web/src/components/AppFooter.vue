@@ -1,6 +1,6 @@
 <template>
   <footer class="site-footer">
-    <p>&copy; {{ new Date().getFullYear() }} EX-AMIGA. All rights reserved.</p>
+    <p>{{ $t('footer.rights', { year: new Date().getFullYear() }) }}</p>
   </footer>
 </template>
 

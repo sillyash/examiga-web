@@ -1,19 +1,22 @@
 <template>
   <header class="site-header">
     <RouterLink id="branding" to="/">
-      <img src="/logo.jpg" alt="EX-AMIGA Logo" width="100" height="100" />
+      <img src="/logo.jpg" :alt="$t('header.logoAlt')" width="100" height="100" />
       <h1>EX-AMIGA</h1>
     </RouterLink>
 
     <div id="navbar">
-      <RouterLink to="/" class="nav-link">Home</RouterLink>
-      <RouterLink to="/shows" class="nav-link">Shows</RouterLink>
-      <RouterLink to="/guestbook" class="nav-link">Guestbook</RouterLink>
-      <RouterLink to="/about" class="nav-link">About</RouterLink>
-      <RouterLink to="/contact" class="nav-link">Contact</RouterLink>
+      <RouterLink to="/" class="nav-link">{{ $t('nav.home') }}</RouterLink>
+      <RouterLink to="/shows" class="nav-link">{{ $t('nav.shows') }}</RouterLink>
+      <RouterLink to="/guestbook" class="nav-link">{{ $t('nav.guestbook') }}</RouterLink>
+      <RouterLink to="/about" class="nav-link">{{ $t('nav.about') }}</RouterLink>
+      <RouterLink to="/contact" class="nav-link">{{ $t('nav.contact') }}</RouterLink>
     </div>
 
-    <ThemeToggle />
+    <div class="header-toggles">
+      <LanguageToggle />
+      <ThemeToggle />
+    </div>
   </header>
 </template>
 
@@ -35,7 +38,9 @@
   border-bottom: 2px solid var(--color-border);
 }
 
-.site-header > .theme-toggle {
+.header-toggles {
+  display: flex;
+  gap: 0.5rem;
   justify-self: end;
 }
 
@@ -65,18 +70,20 @@
     gap: 1rem;
   }
 
-  .site-header > .theme-toggle {
+  .header-toggles {
     justify-self: center;
   }
 }
 </style>
 
 <script lang="ts">
+import LanguageToggle from '@/components/LanguageToggle.vue'
 import ThemeToggle from '@/components/ThemeToggle.vue'
 
 export default {
   name: 'AppHeader',
   components: {
+    LanguageToggle,
     ThemeToggle,
   },
 }

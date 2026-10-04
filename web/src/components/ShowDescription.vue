@@ -23,10 +23,10 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          more info ↗
+          {{ $t('ticket.moreInfo') }}
         </a>
-        <span v-if="isPast" class="status">see you next time ♡</span>
-        <span v-else-if="tourDate.is_sold_out" class="status">no more tix, sorry :(</span>
+        <span v-if="isPast" class="status">{{ $t('ticket.seeYou') }}</span>
+        <span v-else-if="tourDate.is_sold_out" class="status">{{ $t('ticket.soldOutMsg') }}</span>
         <a
           v-else-if="tourDate.ticket_url"
           class="tickets-link"
@@ -34,17 +34,19 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          get tickets →
+          {{ $t('ticket.getTickets') }}
         </a>
-        <span v-else class="status">tix at the door</span>
+        <span v-else class="status">{{ $t('ticket.atDoor') }}</span>
       </div>
 
-      <span v-if="tourDate.is_sold_out" class="stamp" aria-label="Sold out">SOLD OUT</span>
+      <span v-if="tourDate.is_sold_out" class="stamp" :aria-label="$t('ticket.soldOutLabel')">{{
+        $t('ticket.soldOutStamp')
+      }}</span>
     </div>
 
     <button v-if="!isPast" type="button" class="ticket-calendar" @click="addToCalendar">
       <span class="calendar-plus" aria-hidden="true">+</span>
-      <span class="calendar-label">add to calendar</span>
+      <span class="calendar-label">{{ $t('ticket.addToCalendar') }}</span>
     </button>
   </article>
 </template>

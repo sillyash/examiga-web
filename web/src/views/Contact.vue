@@ -1,5 +1,5 @@
 <template>
-  <PageLayout title="Contact">
+  <PageLayout :title="$t('pages.contact')">
     <div class="content">
       <div class="contact-methods">
         <a
@@ -9,7 +9,14 @@
           rel="noopener noreferrer"
           aria-label="Instagram"
         >
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+          <svg
+            viewBox="0 0 24 24"
+            width="28"
+            height="28"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <rect x="2" y="2" width="20" height="20" rx="5" />
             <circle cx="12" cy="12" r="4.5" />
             <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none" />
@@ -32,16 +39,34 @@
           <p>TikTok</p>
         </a>
 
-        <a class="contact-link" href="mailto:contact@examigaband.com" aria-label="Email">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+        <a
+          class="contact-link"
+          href="mailto:contact@examigaband.com"
+          :aria-label="$t('contact.email')"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="28"
+            height="28"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <rect x="2" y="4" width="20" height="16" rx="2" />
             <path d="m3 6 9 7 9-7" />
           </svg>
           <p>contact@examigaband.com</p>
         </a>
 
-        <a class="contact-link" href="tel:+33629276127" aria-label="Phone">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+        <a class="contact-link" href="tel:+33629276127" :aria-label="$t('contact.phone')">
+          <svg
+            viewBox="0 0 24 24"
+            width="28"
+            height="28"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <path
               d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 3 5a1 1 0 0 1 1-1z"
             />
