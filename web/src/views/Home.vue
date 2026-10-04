@@ -25,12 +25,13 @@
     <h2>{{ $t('home.whoWeAre') }}</h2>
     <p>{{ $t('home.bio') }}</p>
     <ul class="members">
-      <li v-for="(member, index) in $tm('home.members')" :key="index">
-        <span class="member-name">{{ $rt(member.name) }}</span> — {{ $rt(member.role) }}
+      <li v-for="member in members" :key="member.name">
+        <span class="member-name">{{ member.name }}</span> —
+        {{ member.roles.map((role) => $t(`home.roles.${role}`)).join(', ') }}
       </li>
     </ul>
     <p>
-      <strong>{{ $t('home.influencesLabel') }}</strong> {{ $t('home.influences') }}
+      <strong>{{ $t('home.influencesLabel') }}</strong> {{ influences.join(', ') }}
     </p>
   </section>
 
@@ -51,6 +52,20 @@ import { getShoutouts, getTourDates, type Shoutout, type TourDate } from '@/api'
 
 // How many of the latest shoutouts to preview on the home page.
 const SHOUTOUT_PREVIEW_COUNT = 3
+
+// Names aren't translated, so they live here once instead of in both locale files.
+// Roles are keys under `home.roles` in the locale files.
+type Role = 'vocals' | 'guitar' | 'bass' | 'drums'
+
+const MEMBERS: { name: string; roles: Role[] }[] = [
+  { name: 'TODO name', roles: ['vocals', 'guitar'] },
+  { name: 'TODO name 2', roles: ['guitar'] },
+  { name: 'TODO name 3', roles: ['bass'] },
+  { name: 'TODO name 4', roles: ['drums'] },
+]
+
+// Bands that inspired us, shown as "for fans of: …".
+const INFLUENCES = ['American Football', "Cap'n Jazz", 'TODO']
 
 // Today as "YYYY-MM-DD" in local time, comparable as a string with TourDate.date
 // (same as in Shows.vue).
@@ -75,6 +90,8 @@ export default {
       showsLoading: true,
       showsError: false,
       shoutouts: [] as Shoutout[],
+      members: MEMBERS,
+      influences: INFLUENCES,
     }
   },
 
