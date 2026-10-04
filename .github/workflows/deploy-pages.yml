@@ -1,5 +1,4 @@
-# Builds web/ and publishes it to GitHub Pages (custom domain: examigaband.com,
-# DNS on Cloudflare — see DEPLOYMENT.md).
+# Builds web/ and publishes it to GitHub Pages at examigaband.com.
 name: Deploy to GitHub Pages
 
 on:
@@ -36,9 +35,7 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          # Public URL of the Flask API (Pages can't run it), e.g.
-          # https://api.examigaband.com. Set it under Settings → Secrets and
-          # variables → Actions → Variables.
+          # Repo variable, e.g. https://api.examigaband.com (the API runs on the Pi).
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
