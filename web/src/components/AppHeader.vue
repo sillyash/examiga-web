@@ -72,6 +72,7 @@
 
   .header-toggles {
     justify-self: center;
+    margin-right: 1rem;
   }
 }
 </style>
