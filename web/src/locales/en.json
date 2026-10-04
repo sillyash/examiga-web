@@ -60,7 +60,9 @@
     "atDoor": "tix at the door",
     "soldOutStamp": "SOLD OUT",
     "soldOutLabel": "Sold out",
-    "addToCalendar": "add to calendar"
+    "addToCalendar": "add to calendar",
+    "calendarGoogle": "Google Calendar",
+    "calendarIcs": "Apple · Outlook (.ics)"
   },
   "guestbook": {
     "loading": "loading the guestbook…",

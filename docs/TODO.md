@@ -18,6 +18,7 @@ Remaining work, in order. Not shipped in the submission archive (excluded in
 
 About was merged into Home (hero, next show, who we are, latest shoutouts).
 
+- [x] Add to calendar: menu with a Google Calendar link + the .ics download (fixed for Firefox)
 - [ ] Replace the `TODO` placeholders: `home.bio` in both `locales/fr.json` and `en.json`;
       member names/roles and influence bands in `MEMBERS` / `INFLUENCES` in `Home.vue`
       (not translated, so defined once)

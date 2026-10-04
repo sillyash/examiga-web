@@ -60,7 +60,9 @@
     "atDoor": "billets sur place",
     "soldOutStamp": "COMPLET",
     "soldOutLabel": "Complet",
-    "addToCalendar": "ajouter au calendrier"
+    "addToCalendar": "ajouter au calendrier",
+    "calendarGoogle": "Google Agenda",
+    "calendarIcs": "Apple · Outlook (.ics)"
   },
   "guestbook": {
     "loading": "chargement du livre d'or…",
