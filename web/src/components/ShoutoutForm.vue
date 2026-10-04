@@ -1,8 +1,8 @@
 <template>
   <form class="sign-form" novalidate @submit.prevent="submit">
-    <h2>sign the guestbook ✎</h2>
+    <h2>{{ $t('shoutoutForm.title') }}</h2>
 
-    <label for="shoutout-name">your name</label>
+    <label for="shoutout-name">{{ $t('shoutoutForm.nameLabel') }}</label>
     <input
       id="shoutout-name"
       v-model="name"
@@ -14,13 +14,13 @@
     />
     <p v-if="fieldErrors.name" class="error">{{ fieldErrors.name }}</p>
 
-    <label for="shoutout-message">your message</label>
+    <label for="shoutout-message">{{ $t('shoutoutForm.messageLabel') }}</label>
     <textarea
       id="shoutout-message"
       v-model="message"
       rows="4"
       :maxlength="messageMax"
-      placeholder="say hi to the band ♡"
+      :placeholder="$t('shoutoutForm.messagePlaceholder')"
       :aria-invalid="Boolean(fieldErrors.message)"
     ></textarea>
     <p class="counter">{{ message.length }}/{{ messageMax }}</p>
@@ -38,10 +38,10 @@
     />
 
     <div class="form-footer">
-      <p v-if="error" class="error" role="alert">{{ error }}</p>
-      <p v-else-if="thanked" class="thanks" role="status">thank you ♡</p>
+      <p v-if="error" class="error" role="alert">{{ $t(error) }}</p>
+      <p v-else-if="thanked" class="thanks" role="status">{{ $t('shoutoutForm.thanks') }}</p>
       <button type="submit" :disabled="!canSubmit">
-        {{ sending ? 'sending…' : 'sign it!' }}
+        {{ sending ? $t('shoutoutForm.sending') : $t('shoutoutForm.send') }}
       </button>
     </div>
   </form>
@@ -66,6 +66,7 @@ export default {
       website: '',
       sending: false,
       thanked: false,
+      // i18n key of the form-level error, translated in the template so it follows the language
       error: '',
       fieldErrors: {} as Record<string, string>,
       nameMax: NAME_MAX,
@@ -108,9 +109,9 @@ export default {
               : String(messages)
           }
         } else if (err instanceof ApiError && err.status === 429) {
-          this.error = 'woah, slow down ♡ try again in a minute'
+          this.error = 'shoutoutForm.rateLimited'
         } else {
-          this.error = "couldn't send it :( try again?"
+          this.error = 'shoutoutForm.sendError'
         }
       } finally {
         this.sending = false

@@ -1,0 +1,97 @@
+{
+  "nav": {
+    "home": "Home",
+    "shows": "Shows",
+    "guestbook": "Guestbook",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "header": {
+    "logoAlt": "EX-AMIGA logo"
+  },
+  "theme": {
+    "toNight": "Switch to night theme",
+    "toDay": "Switch to day theme"
+  },
+  "lang": {
+    "short": "FR",
+    "switch": "Switch to French"
+  },
+  "footer": {
+    "rights": "© {year} EX-AMIGA. All rights reserved."
+  },
+  "pages": {
+    "home": "Home",
+    "shows": "Shows",
+    "guestbook": "Guestbook",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "common": {
+    "retry": "try again"
+  },
+  "shows": {
+    "loading": "loading shows…",
+    "loadError": "couldn't load the shows :(",
+    "upcoming": "Upcoming",
+    "past": "Past shows",
+    "none": "no shows planned right now, stay tuned ♡"
+  },
+  "ticket": {
+    "moreInfo": "more info ↗",
+    "seeYou": "see you next time ♡",
+    "soldOutMsg": "no more tix, sorry :(",
+    "getTickets": "get tickets →",
+    "atDoor": "tix at the door",
+    "soldOutStamp": "SOLD OUT",
+    "soldOutLabel": "Sold out",
+    "addToCalendar": "add to calendar"
+  },
+  "guestbook": {
+    "loading": "loading the guestbook…",
+    "loadError": "couldn't load the guestbook :(",
+    "empty": "nobody signed yet, be the first ♡",
+    "loadMoreError": "couldn't load more :(",
+    "loadMore": "load more ↓",
+    "loadingMore": "loading…"
+  },
+  "shoutoutForm": {
+    "title": "sign the guestbook ✎",
+    "nameLabel": "your name",
+    "messageLabel": "your message",
+    "messagePlaceholder": "say hi to the band ♡",
+    "thanks": "thank you ♡",
+    "send": "sign it!",
+    "sending": "sending…",
+    "rateLimited": "woah, slow down ♡ try again in a minute",
+    "sendError": "couldn't send it :( try again?"
+  },
+  "contact": {
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "contactForm": {
+    "title": "send us a message ✎",
+    "nameLabel": "your name",
+    "emailLabel": "your email",
+    "emailPlaceholder": "you{'@'}example.com",
+    "inquiryLabel": "inquiry type",
+    "choose": "choose one…",
+    "inquiry": {
+      "booking": "Booking",
+      "press": "Press",
+      "fanMail": "Fan mail",
+      "other": "Other"
+    },
+    "messageLabel": "your message",
+    "messagePlaceholder": "say hi to the band ♡",
+    "errors": {
+      "name": "tell us who you are ♡",
+      "email": "we need an email to reply to",
+      "inquiryType": "pick an inquiry type",
+      "message": "what's up?"
+    },
+    "opening": "opening your email client…",
+    "send": "send"
+  }
+}

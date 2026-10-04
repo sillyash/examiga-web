@@ -1,22 +1,23 @@
 <template>
-  <PageLayout title="Shows">
-    <p v-if="loading" class="status">loading shows…</p>
+  <PageLayout :title="$t('pages.shows')">
+    <p v-if="loading" class="status">{{ $t('shows.loading') }}</p>
 
     <p v-else-if="error" class="status">
-      couldn't load the shows :( <button type="button" @click="loadShows">try again</button>
+      {{ $t('shows.loadError') }}
+      <button type="button" @click="loadShows">{{ $t('common.retry') }}</button>
     </p>
 
     <template v-else>
       <section>
-        <h2>Upcoming</h2>
+        <h2>{{ $t('shows.upcoming') }}</h2>
         <ShowDescription v-for="show in upcomingShows" :key="show.id" :tour-date="show" />
         <p v-if="upcomingShows.length === 0" class="status">
-          no shows planned right now, stay tuned ♡
+          {{ $t('shows.none') }}
         </p>
       </section>
 
       <section v-if="pastShows.length > 0">
-        <h2>Past shows</h2>
+        <h2>{{ $t('shows.past') }}</h2>
         <ShowDescription v-for="show in pastShows" :key="show.id" :tour-date="show" />
       </section>
     </template>

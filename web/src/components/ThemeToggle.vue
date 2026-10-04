@@ -8,7 +8,7 @@ const { theme, toggleTheme } = useTheme()
   <button
     type="button"
     class="theme-toggle"
-    :aria-label="theme === 'day' ? 'Switch to night theme' : 'Switch to day theme'"
+    :aria-label="theme === 'day' ? $t('theme.toNight') : $t('theme.toDay')"
     @click="toggleTheme"
   >
     <Transition name="flip" mode="out-in">

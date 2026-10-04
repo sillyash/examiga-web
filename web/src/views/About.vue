@@ -1,5 +1,5 @@
 <template>
-  <PageLayout title="About">
+  <PageLayout :title="$t('pages.about')">
     <!-- about page content -->
   </PageLayout>
 </template>

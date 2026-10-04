@@ -3,17 +3,10 @@
 Remaining work, in order. Not shipped in the submission archive (excluded in
 `scripts/package.sh`).
 
-## 1. i18n — language button (3 pts, every page) · not started
+## 1. i18n — language button (3 pts, every page) · done
 
-- [ ] `web/src/locales/{fr,en}.json`, passed as `messages` to `createI18n` in `main.ts`
-- [ ] Language toggle next to `ThemeToggle` in `AppHeader.vue`: persist in
-      `localStorage` and keep `<html lang>` in sync (same pattern as `useTheme.ts`)
-- [ ] Replace hardcoded strings:
-  - [ ] `AppHeader` nav + `PageLayout` titles in every view, `AppFooter`
-  - [ ] `Shows` (headings, loading/error/empty) + `ShowDescription` (ticket labels, SOLD OUT)
-  - [ ] `Guestbook` + `ShoutoutForm` (labels, placeholders, button, errors, thanks, empty state)
-  - [ ] `Contact` + `ContactForm` (labels, placeholders, inquiry options, validation errors, status)
-- [ ] Check that `ShowDescription` dates re-render immediately when the language changes
+- [x] `locales/{fr,en}.json`, `LanguageToggle.vue` in the header, persisted + `<html lang>`
+- [ ] Home/About content (§3) must go through `$t` too, in both JSON files
 
 ## 2. Responsive + Firefox (4 pts)
 
@@ -28,6 +21,11 @@ Remaining work, in order. Not shipped in the submission archive (excluded in
 - [ ] About page (empty)
 
 ## 4. Submission
+
+- [ ] `npm run build` fails on `main`: `eslint.config.ts` imports `defineConfigWithVueTs` /
+      `vueTsConfigs` as named exports that the installed `@vue/eslint-config-typescript`
+      doesn't have (also crashes `npm run lint`). `scripts/package.sh` runs the build,
+      so this blocks the archive.
 
 - [ ] `docs/RAPPORT.md` (empty) → `just pdf`, ≤ 2 pages: technologies (justify
       `web/src` being over the 15-file limit rather than cutting files), mini user
