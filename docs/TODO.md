@@ -20,6 +20,7 @@ Remaining work, in order. Not shipped in the submission archive (excluded in
 - [ ] `App.vue`: `main { width: 70% }` → `width: 100%` + a `max-width`
 - [ ] Header below 700px already stacks into one column; check that the nav wraps cleanly
 - [ ] In **Firefox**, check every page at 390 / 768 / 1280px (Shows tickets, Guestbook, Contact form)
+- [ ] Maybe do specific mobile layouts or rules ? -> In general, let's try to keep it logic and use variables / rules in main.css to avoid redundancy
 
 ## 3. Content
 
