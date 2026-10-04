@@ -33,14 +33,13 @@
     "allShows": "toutes les dates →",
     "whoWeAre": "Qui on est",
     "bio": "TODO : quelques lignes sur le groupe, comment vous vous êtes rencontré·es, votre son.",
-    "members": [
-      { "name": "TODO nom", "role": "chant, guitare" },
-      { "name": "TODO nom", "role": "guitare" },
-      { "name": "TODO nom", "role": "basse" },
-      { "name": "TODO nom", "role": "batterie" }
-    ],
+    "roles": {
+      "vocals": "chant",
+      "guitar": "guitare",
+      "bass": "basse",
+      "drums": "batterie"
+    },
     "influencesLabel": "Pour les fans de :",
-    "influences": "TODO : American Football, Cap'n Jazz, …",
     "fromGuestbook": "Dans le livre d'or"
   },
   "common": {
