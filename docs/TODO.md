@@ -1,41 +1,36 @@
-# TODO — later
+# TODO
 
-Work parked for later. Not shipped in the submission archive (excluded in
+Remaining work, in order. Not shipped in the submission archive (excluded in
 `scripts/package.sh`).
 
-## i18n (language button = 3 pts, required on every page)
+## 1. i18n — language button (3 pts, every page) · not started
 
-- [ ] `web/src/locales/fr.json` + `en.json`, loaded as `messages` in `main.ts`'s `createI18n`
-- [ ] Language toggle button next to `ThemeToggle` in `AppHeader.vue`
-- [ ] Persist the choice in `localStorage` (same pattern as `composables/useTheme.ts`)
-      and keep `<html lang>` in sync
-- [ ] Translate every hardcoded string:
-  - [ ] nav links + page titles (`AppHeader.vue`, `PageLayout` titles in each view)
-  - [ ] footer (`AppFooter.vue`)
-  - [ ] Shows: "Upcoming", "Past shows", loading/error/empty messages
-  - [ ] Tickets (`ShowDescription.vue`): "more info", "add to calendar", "get tickets",
-        "tix at the door", "no more tix, sorry", "see you next time", "SOLD OUT"
-  - [ ] Guestbook: form labels, placeholders, button, errors, thank-you, empty state
-- [ ] Dates/times already follow `$i18n.locale` in `ShowDescription.vue`, check
-      they update live when switching
+- [ ] `web/src/locales/{fr,en}.json`, passed as `messages` to `createI18n` in `main.ts`
+- [ ] Language toggle next to `ThemeToggle` in `AppHeader.vue`: persist in
+      `localStorage` and keep `<html lang>` in sync (same pattern as `useTheme.ts`)
+- [ ] Replace hardcoded strings:
+  - [ ] `AppHeader` nav + `PageLayout` titles in every view, `AppFooter`
+  - [ ] `Shows` (headings, loading/error/empty) + `ShowDescription` (ticket labels, SOLD OUT)
+  - [ ] `Guestbook` + `ShoutoutForm` (labels, placeholders, button, errors, thanks, empty state)
+  - [ ] `Contact` + `ContactForm` (labels, placeholders, inquiry options, validation errors, status)
+- [ ] Check that `ShowDescription` dates re-render immediately when the language changes
 
-## Responsive / adaptive styling
+## 2. Responsive + Firefox (4 pts)
 
-- [ ] `main { width: 70% }` in `App.vue` squeezes content on phones (use `max-width` instead)
-- [ ] Header/nav at phone width (nav wraps onto 2 lines, theme toggle on its own row)
-- [ ] Re-check tickets and guestbook at 390 / 768 / 1280px
-- [ ] Test everything in **Firefox** specifically (4 pts)
+- [ ] `App.vue`: `main { width: 70% }` → `width: 100%` + a `max-width`
+- [ ] Header below 700px already stacks into one column; check that the nav wraps cleanly
+- [ ] In **Firefox**, check every page at 390 / 768 / 1280px (Shows tickets, Guestbook, Contact form)
 
-## Polish
+## 3. Content
 
-- [ ] Home and About pages are empty
-- [ ] Guestbook spam protection (honeypot field) if it gets spammed
+- [ ] Home page (empty)
+- [ ] About page (empty)
 
-## Submission
+## 4. Submission
 
-- [ ] `docs/RAPPORT.md` → `rapport.pdf` (≤ 2 pages): technologies (client is over the
-      15-file limit — justify the overage in the report rather than minimizing it
-      further), mini user manual, 1–2 technical details
-- [ ] Screenshots of every page × fr/en × day/night in the report
-- [ ] Root README up to date
-- [ ] `scripts/package.sh`, check archive ≤ 3MB
+- [ ] `docs/RAPPORT.md` (empty) → `just pdf`, ≤ 2 pages: technologies (justify
+      `web/src` being over the 15-file limit rather than cutting files), mini user
+      manual, 1–2 technical details (e.g. honeypot + rate limit, theme composable)
+- [ ] Screenshots: every page × fr/en × day/night (do this after 1–3)
+- [ ] Root `README.md` up to date
+- [ ] `just release`, archive ≤ 3MB
