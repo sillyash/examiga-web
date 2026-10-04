@@ -1,5 +1,8 @@
 <template>
-  <article class="ticket" :class="{ 'is-sold-out': tourDate.is_sold_out, 'is-past': isPast }">
+  <article
+    class="ticket"
+    :class="{ 'is-sold-out': tourDate.is_sold_out, 'is-past': isPast, 'menu-open': menuOpen }"
+  >
     <div class="ticket-stub">
       <span class="stub-month">{{ month }}</span>
       <span class="stub-day">{{ day }}</span>
@@ -44,10 +47,45 @@
       }}</span>
     </div>
 
-    <button v-if="!isPast" type="button" class="ticket-calendar" @click="addToCalendar">
-      <span class="calendar-plus" aria-hidden="true">+</span>
-      <span class="calendar-label">{{ $t('ticket.addToCalendar') }}</span>
-    </button>
+    <div
+      v-if="!isPast"
+      ref="calendar"
+      class="ticket-calendar"
+      @keydown.esc="closeMenu"
+      @focusout="onCalendarFocusOut"
+    >
+      <button
+        ref="calendarToggle"
+        type="button"
+        class="calendar-toggle"
+        aria-haspopup="menu"
+        :aria-expanded="menuOpen"
+        :aria-controls="menuId"
+        @click="toggleMenu"
+      >
+        <span class="calendar-plus" aria-hidden="true">+</span>
+        <span class="calendar-label">{{ $t('ticket.addToCalendar') }}</span>
+      </button>
+
+      <ul v-if="menuOpen" :id="menuId" ref="calendarMenu" class="calendar-menu" role="menu">
+        <li role="none">
+          <a
+            role="menuitem"
+            :href="googleCalendarUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            @click="closeMenu"
+          >
+            {{ $t('ticket.calendarGoogle') }}
+          </a>
+        </li>
+        <li role="none">
+          <button type="button" role="menuitem" @click="downloadIcs">
+            {{ $t('ticket.calendarIcs') }}
+          </button>
+        </li>
+      </ul>
+    </div>
   </article>
 </template>
 
@@ -63,6 +101,12 @@ export default {
       type: Object as PropType<TourDate>,
       required: true,
     },
+  },
+
+  data() {
+    return {
+      menuOpen: false,
+    }
   },
 
   computed: {
@@ -108,33 +152,112 @@ export default {
       today.setHours(0, 0, 0, 0)
       return this.parsedDate < today
     },
+
+    menuId(): string {
+      return `calendar-menu-${this.tourDate.id}`
+    },
+
+    // Event fields shared by the Google link and the .ics file. No set time yet →
+    // all-day event; otherwise assume a 2h set. End dates are exclusive in both formats.
+    calendarEvent() {
+      const { time, venue, city, address, notes, info_url } = this.tourDate
+      const start = new Date(this.parsedDate)
+      const end = new Date(this.parsedDate)
+      if (time) {
+        const [hours = 0, minutes = 0] = time.split(':').map(Number)
+        start.setHours(hours, minutes)
+        end.setTime(start.getTime() + 2 * 60 * 60 * 1000)
+      } else {
+        end.setDate(end.getDate() + 1)
+      }
+      const allDay = !time
+      return {
+        title: `EX-AMIGA @ ${venue}`,
+        location: [venue, address ?? city].join(', '),
+        details: [notes, info_url].filter(Boolean).join('\n\n'),
+        start: calendarStamp(start, allDay),
+        end: calendarStamp(end, allDay),
+        allDay,
+      }
+    },
+
+    googleCalendarUrl(): string {
+      const { title, location, details, start, end } = this.calendarEvent
+      const params = new URLSearchParams({
+        action: 'TEMPLATE',
+        text: title,
+        dates: `${start}/${end}`,
+        location,
+        details,
+      })
+      return `https://calendar.google.com/calendar/render?${params}`
+    },
+  },
+
+  mounted() {
+    document.addEventListener('pointerdown', this.onDocumentPointerDown)
+  },
+
+  beforeUnmount() {
+    document.removeEventListener('pointerdown', this.onDocumentPointerDown)
   },
 
   methods: {
-    // Builds a one-event .ics file and hands it to the browser, which passes it on to
-    // the device's calendar app (or just downloads it on desktop).
-    addToCalendar() {
-      const { id, date, time, venue, city, address, notes, info_url } = this.tourDate
-      const day = date.replaceAll('-', '')
+    toggleMenu() {
+      if (this.menuOpen) {
+        this.closeMenu()
+        return
+      }
+      this.menuOpen = true
+      // Move focus into the menu so keyboard users land on the first option.
+      this.$nextTick(() => {
+        const menu = this.$refs.calendarMenu as HTMLElement | undefined
+        menu?.querySelector<HTMLElement>('[role="menuitem"]')?.focus()
+      })
+    },
 
-      // No set time yet → all-day event. Times are "floating" (no timezone), so they're
-      // read as local time on the fan's device.
-      const when = time
-        ? [`DTSTART:${day}T${time.replaceAll(':', '')}`, 'DURATION:PT2H']
-        : [`DTSTART;VALUE=DATE:${day}`]
+    closeMenu() {
+      if (!this.menuOpen) return
+      this.menuOpen = false
+      ;(this.$refs.calendarToggle as HTMLElement | undefined)?.focus()
+    },
+
+    onDocumentPointerDown(event: PointerEvent) {
+      const calendar = this.$refs.calendar as HTMLElement | undefined
+      if (this.menuOpen && !calendar?.contains(event.target as Node)) {
+        this.menuOpen = false
+      }
+    },
+
+    // Tabbing out of the menu closes it. A null relatedTarget (e.g. Safari not focusing
+    // buttons on click) is left to the pointerdown listener, so it can't eat the click.
+    onCalendarFocusOut(event: FocusEvent) {
+      const next = event.relatedTarget as Node | null
+      const calendar = this.$refs.calendar as HTMLElement | undefined
+      if (next && !calendar?.contains(next)) {
+        this.menuOpen = false
+      }
+    },
+
+    // Builds a one-event .ics file for Apple Calendar / Outlook / Thunderbird and
+    // hands it to the browser (opens the calendar app on mobile, downloads on desktop).
+    downloadIcs() {
+      const { title, location, details, start, end, allDay } = this.calendarEvent
+      const dateValue = allDay ? ';VALUE=DATE' : ''
 
       const lines = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
         'PRODID:-//EX-AMIGA//Shows//EN',
         'BEGIN:VEVENT',
-        `UID:tour-date-${id}@examiga`,
+        `UID:tour-date-${this.tourDate.id}@examiga`,
         `DTSTAMP:${new Date().toISOString().replace(/[-:]|\.\d{3}/g, '')}`,
-        ...when,
-        `SUMMARY:${escapeIcs(`EX-AMIGA @ ${venue}`)}`,
-        `LOCATION:${escapeIcs([venue, address ?? city].join(', '))}`,
-        ...(notes ? [`DESCRIPTION:${escapeIcs(notes)}`] : []),
-        ...(info_url ? [`URL:${info_url}`] : []),
+        `DTSTART${dateValue}:${start}`,
+        `DTEND${dateValue}:${end}`,
+        `SUMMARY:${escapeIcs(title)}`,
+        `LOCATION:${escapeIcs(location)}`,
+        ...(details ? [`DESCRIPTION:${escapeIcs(details)}`] : []),
+        ...(this.tourDate.info_url ? [`URL:${this.tourDate.info_url}`] : []),
         'END:VEVENT',
         'END:VCALENDAR',
       ]
@@ -142,9 +265,15 @@ export default {
       const blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' })
       const link = document.createElement('a')
       link.href = URL.createObjectURL(blob)
-      link.download = `examiga-${date}.ics`
+      link.download = `examiga-${this.tourDate.date}.ics`
+      // Firefox wants the link in the document, and revoking the URL right after
+      // click() can cancel the download, so wait a tick.
+      document.body.appendChild(link)
       link.click()
-      URL.revokeObjectURL(link.href)
+      link.remove()
+      setTimeout(() => URL.revokeObjectURL(link.href), 0)
+
+      this.closeMenu()
     },
   },
 }
@@ -152,6 +281,15 @@ export default {
 // Escape text for an iCalendar TEXT value (RFC 5545 §3.3.11).
 function escapeIcs(text: string): string {
   return text.replace(/[\\;,]/g, (char) => `\\${char}`).replace(/\n/g, '\\n')
+}
+
+// "YYYYMMDD" or "YYYYMMDDTHHMMSS" from the local date fields. No trailing Z: times are
+// "floating", so both Google and .ics read them as the fan's local time.
+function calendarStamp(date: Date, allDay: boolean): string {
+  const pad = (n: number) => String(n).padStart(2, '0')
+  const day = `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}`
+  if (allDay) return day
+  return `${day}T${pad(date.getHours())}${pad(date.getMinutes())}${pad(date.getSeconds())}`
 }
 </script>
 
@@ -312,11 +450,17 @@ function escapeIcs(text: string): string {
 .ticket-calendar {
   position: relative;
   display: flex;
+  width: 5.5rem;
+  border-left: 3px dashed var(--color-border);
+}
+
+.calendar-toggle {
+  display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  width: 5.5rem;
   padding: 1rem 0.5rem;
   font: inherit;
   line-height: 1;
@@ -324,15 +468,15 @@ function escapeIcs(text: string): string {
   color: var(--color-text);
   background: transparent;
   border: none;
-  border-left: 3px dashed var(--color-border);
   cursor: pointer;
   transition:
     background-color 0.15s ease,
     color 0.15s ease;
 }
 
-.ticket-calendar:hover,
-.ticket-calendar:focus-visible {
+.calendar-toggle:hover,
+.calendar-toggle:focus-visible,
+.calendar-toggle[aria-expanded='true'] {
   background: var(--color-text);
   color: var(--color-surface);
 }
@@ -341,6 +485,7 @@ function escapeIcs(text: string): string {
 .ticket-calendar::after {
   content: '';
   position: absolute;
+  z-index: 1;
   left: calc(var(--notch-size) / -2 - 1.5px);
   width: var(--notch-size);
   height: var(--notch-size);
@@ -356,6 +501,52 @@ function escapeIcs(text: string): string {
 
 .ticket-calendar::after {
   bottom: calc(var(--notch-size) / -2 - 3px);
+}
+
+/* Each ticket's tilt transform makes its own stacking context: lift the open one so the
+   menu isn't covered by the next ticket. */
+.ticket.menu-open {
+  z-index: 2;
+}
+
+.calendar-menu {
+  position: absolute;
+  top: calc(100% + 3px);
+  right: -3px;
+  z-index: 2;
+  min-width: 13rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--color-surface);
+  border: 3px solid var(--color-border);
+  box-shadow: 6px 6px 0 var(--color-border);
+}
+
+.calendar-menu [role='menuitem'] {
+  display: block;
+  width: 100%;
+  padding: 0.4rem 0.75rem;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  color: var(--color-text);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.calendar-menu li + li {
+  border-top: 2px dashed var(--color-border);
+}
+
+.calendar-menu [role='menuitem']:hover,
+.calendar-menu [role='menuitem']:focus-visible {
+  background: var(--color-text);
+  color: var(--color-surface);
 }
 
 .calendar-plus {
@@ -406,12 +597,15 @@ function escapeIcs(text: string): string {
   }
 
   .ticket-calendar {
-    flex-direction: row;
     flex-basis: 100%;
-    gap: 0.5rem;
-    padding: 0.4rem;
     border-left: none;
     border-top: 3px dashed var(--color-border);
+  }
+
+  .calendar-toggle {
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0.4rem;
   }
 
   .ticket-calendar::before,
