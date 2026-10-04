@@ -3,7 +3,6 @@
     "home": "Accueil",
     "shows": "Concerts",
     "guestbook": "Livre d'or",
-    "about": "À propos",
     "contact": "Contact"
   },
   "header": {
@@ -21,11 +20,28 @@
     "rights": "© {year} EX-AMIGA. Tous droits réservés."
   },
   "pages": {
-    "home": "Accueil",
     "shows": "Concerts",
     "guestbook": "Livre d'or",
-    "about": "À propos",
     "contact": "Contact"
+  },
+  "home": {
+    "photoAlt": "EX-AMIGA",
+    "tagline": "du midwest emo depuis Paris ♡",
+    "toShows": "prochains concerts →",
+    "toGuestbook": "signer le livre d'or ✎",
+    "nextShow": "Prochain concert",
+    "allShows": "toutes les dates →",
+    "whoWeAre": "Qui on est",
+    "bio": "TODO : quelques lignes sur le groupe, comment vous vous êtes rencontré·es, votre son.",
+    "members": [
+      { "name": "TODO nom", "role": "chant, guitare" },
+      { "name": "TODO nom", "role": "guitare" },
+      { "name": "TODO nom", "role": "basse" },
+      { "name": "TODO nom", "role": "batterie" }
+    ],
+    "influencesLabel": "Pour les fans de :",
+    "influences": "TODO : American Football, Cap'n Jazz, …",
+    "fromGuestbook": "Dans le livre d'or"
   },
   "common": {
     "retry": "réessayer"

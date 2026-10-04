@@ -9,7 +9,6 @@
       <RouterLink to="/" class="nav-link">{{ $t('nav.home') }}</RouterLink>
       <RouterLink to="/shows" class="nav-link">{{ $t('nav.shows') }}</RouterLink>
       <RouterLink to="/guestbook" class="nav-link">{{ $t('nav.guestbook') }}</RouterLink>
-      <RouterLink to="/about" class="nav-link">{{ $t('nav.about') }}</RouterLink>
       <RouterLink to="/contact" class="nav-link">{{ $t('nav.contact') }}</RouterLink>
     </div>
 

@@ -6,7 +6,6 @@ Remaining work, in order. Not shipped in the submission archive (excluded in
 ## 1. i18n — language button (3 pts, every page) · done
 
 - [x] `locales/{fr,en}.json`, `LanguageToggle.vue` in the header, persisted + `<html lang>`
-- [ ] Home/About content (§3) must go through `$t` too, in both JSON files
 
 ## 2. Responsive + Firefox (4 pts)
 
@@ -17,8 +16,12 @@ Remaining work, in order. Not shipped in the submission archive (excluded in
 
 ## 3. Content
 
-- [ ] Home page (empty)
-- [ ] About page (empty)
+About was merged into Home (hero, next show, who we are, latest shoutouts).
+
+- [ ] Replace the `TODO` placeholders in `home.*` (bio, members, influences) in both
+      `locales/fr.json` and `en.json`
+- [ ] Band photo → `web/public/band.jpg`, then point `.hero-photo` in `Home.vue` at it
+      (it shows the logo for now)
 
 ## 4. Submission
 
