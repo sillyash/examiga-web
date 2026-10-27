@@ -1,11 +1,12 @@
 from datetime import date, datetime, time
+import os
 
 from app import create_app
 from db import db
 from models import Shoutout, TourDate
 
-# Source of truth for tour dates: edit this list and rerun `uv run python seed.py`
-# to update the site. Every run replaces the whole tour_dates table with this list.
+# Optional starter data for a fresh development database. Existing tour dates are
+# updated by matching date, city, and venue; rows omitted from this list are kept.
 TOUR_DATES = [
     dict(
         date=date(2026, 10, 9),
@@ -54,16 +55,31 @@ SHOUTOUTS = [
 
 
 def seed():
+    if os.environ.get("EXAMIGA_DB_PATH") and os.environ.get("ALLOW_CONFIGURED_DB_SEED") != "true":
+        raise SystemExit(
+            "Refusing to seed a configured database. Set ALLOW_CONFIGURED_DB_SEED=true "
+            "to explicitly allow updates to EXAMIGA_DB_PATH."
+        )
+
     app = create_app()
     with app.app_context():
-        TourDate.query.delete()
-        db.session.bulk_insert_mappings(TourDate, TOUR_DATES)
+        for tour_date in TOUR_DATES:
+            existing = TourDate.query.filter_by(
+                date=tour_date["date"],
+                city=tour_date["city"],
+                venue=tour_date["venue"],
+            ).first()
+            if existing is None:
+                db.session.add(TourDate(**tour_date))
+            else:
+                for field, value in tour_date.items():
+                    setattr(existing, field, value)
 
         if Shoutout.query.count() == 0:
             db.session.bulk_insert_mappings(Shoutout, SHOUTOUTS)
 
         db.session.commit()
-        print(f"Seeded {len(TOUR_DATES)} tour dates.")
+        print(f"Updated or added {len(TOUR_DATES)} starter tour dates.")
 
 
 if __name__ == "__main__":
