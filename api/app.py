@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from apiflask import APIFlask
@@ -21,7 +22,9 @@ limiter = Limiter(get_remote_address, storage_uri="memory://")
 
 def create_app():
     app = APIFlask(__name__, title="EX-AMIGA API", version="1.0.0")
-    app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{BASE_DIR / 'examiga.db'}"
+    # Production keeps the DB outside the (read-only) code dir; see DEPLOYMENT.md.
+    db_path = os.environ.get("EXAMIGA_DB_PATH", BASE_DIR / "examiga.db")
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     # Behind nginx every request comes from 127.0.0.1; trust its X-Forwarded-For so

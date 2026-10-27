@@ -17,3 +17,7 @@ The Flask API runs on a Pi with `uv run gunicorn` behind nginx, at
 `api.examigaband.com`. The host-specific setup (systemd unit, nginx vhost, DNS,
 certs) lives in the [homelab repo](https://github.com/sillyash/homelab), under
 `services/examiga/`.
+
+The SQLite DB defaults to `api/examiga.db`. Set `EXAMIGA_DB_PATH` to put it somewhere
+else; on the Pi it's `/var/lib/examiga/examiga.db`, so the deployed code can stay
+read-only.
