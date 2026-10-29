@@ -42,4 +42,10 @@ main {
   padding: 1rem;
   width: 70%;
 }
+
+@media (max-width: 700px) {
+  main {
+    width: 85%
+  }
+}
 </style>

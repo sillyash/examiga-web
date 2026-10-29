@@ -22,4 +22,10 @@ export default {
 .page-content {
   padding: 0 1.5rem;
 }
+
+@media (max-width: 700px) {
+    .page-content {
+      padding: 1rem;
+    }
+}
 </style>

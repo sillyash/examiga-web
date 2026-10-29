@@ -62,6 +62,10 @@
   text-decoration: none;
 }
 
+h1 {
+  margin-right: 1.5rem;
+}
+
 @media (max-width: 700px) {
   .site-header {
     grid-template-columns: 1fr;
@@ -72,6 +76,10 @@
   .header-toggles {
     justify-self: center;
     margin-right: 1rem;
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
   }
 }
 </style>
