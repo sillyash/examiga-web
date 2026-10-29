@@ -24,6 +24,7 @@
   <section class="about">
     <h2>{{ $t('home.whoWeAre') }}</h2>
     <p>{{ $t('home.bio') }}</p>
+    <img class="hero-photo" src="/band.jpg" style="width: min(100%, 35rem);" :alt="$t('home.bandPhotoAlt')" />
     <ul class="members">
       <li v-for="member in members" :key="member.name">
         <span class="member-name">{{ member.name }}</span> —
@@ -61,11 +62,11 @@ const MEMBERS: { name: string; roles: Role[] }[] = [
   { name: 'Gaspar', roles: ['vocals', 'guitar'] },
   { name: 'Mathilde', roles: ['guitar'] },
   { name: 'Mathis', roles: ['bass'] },
-  { name: 'Ashley', roles: ['drums'] },
+  { name: 'Ashley', roles: ['drums', 'vocals'] },
 ]
 
 // Bands that inspired us, shown as "for fans of: …".
-const INFLUENCES = ['American Football', 'Title Fight', 'Modern Baseball', 'Mom Jeans']
+const INFLUENCES = ['Citizen', 'Title Fight', 'Modern Baseball', 'Mom Jeans', 'Carolina Durante']
 
 // Today as "YYYY-MM-DD" in local time, comparable as a string with TourDate.date
 // (same as in Shows.vue).
