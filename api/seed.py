@@ -8,6 +8,26 @@ from models import Shoutout, TourDate
 # to update the site. Every run replaces the whole tour_dates table with this list.
 TOUR_DATES = [
     dict(
+        date=date(2026, 12, 2),
+        time=time(20, 30),
+        city="Paris",
+        venue="La Télévision",
+        address="20 Rue Léon, 75018 Paris",
+        ticket_url=None,
+        is_sold_out=False,
+        notes=""
+    ),
+    dict(
+        date=date(2026, 11, 26),
+        time=time(20, 0),
+        city="Bures-sur-Yvette",
+        venue="MaPs - Maison des étudiants",
+        address="399 rue du Doyen André Guinier, 91440 Bures-sur-Yvette",
+        ticket_url=None,
+        is_sold_out=False,
+        notes="Campus en Musique >>>"
+    ),
+    dict(
         date=date(2026, 10, 9),
         time=time(20, 0),
         city="Paris",
@@ -15,7 +35,7 @@ TOUR_DATES = [
         address="230 Rue La Fayette, Paris, FR 75010",
         ticket_url=None,
         info_url=None,
-        is_sold_out=False,
+        is_sold_out=True,
         notes="w/ Pericolo !!",
     ),
     dict(
@@ -27,7 +47,7 @@ TOUR_DATES = [
         ticket_url=None,
         info_url="https://www.instagram.com/p/Dd6kf-0RCPq/",
         is_sold_out=False,
-        notes="Co-plateau ! Interested ? Reach contact@examigaband.com",
+        notes="Co-plateau w/ Girl71",
     ),
     dict(
         date=date(2026, 9, 8),
@@ -37,7 +57,7 @@ TOUR_DATES = [
         address="19 Place Marguerite Perey, 91120 Palaiseau",
         ticket_url=None,
         info_url=None,
-        is_sold_out=False,
+        is_sold_out=True,
         notes="Téléfest :3",
     ),
 ]
