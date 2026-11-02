@@ -8,6 +8,7 @@ import router from '@/router'
 import en from '@/locales/en.json'
 import fr from '@/locales/fr.json'
 
+
 type Locale = 'fr' | 'en'
 
 const LOCALE_STORAGE_KEY = 'examiga-locale'
@@ -36,6 +37,12 @@ watch(
 )
 
 const app = createApp(App)
+
+// Source - https://stackoverflow.com/q/75864713
+// Posted by DrKlonk
+// Retrieved 2026-10-29, License - CC BY-SA 4.0
+
+app.config.globalProperties.versionNumber = import.meta.env.PACKAGE_VERSION
 
 app.use(i18n)
 app.use(createPinia())
