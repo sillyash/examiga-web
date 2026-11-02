@@ -1,0 +1,52 @@
+{
+    "shoutouts": [
+        {
+            "created_at": "2026-10-29T13:22:53.047853",
+            "id": 8,
+            "message": "\u00e0 quand un feat avec la f\u00e8ve ?",
+            "name": "La f\u00e8ve"
+        },
+        {
+            "created_at": "2026-10-29T13:22:20.735400",
+            "id": 7,
+            "message": "d\u00e9dicace \u00e0 alexvod",
+            "name": "Arc"
+        },
+        {
+            "created_at": "2026-10-28T07:50:47.111010",
+            "id": 6,
+            "message": "jouer \u00e0 smash la team",
+            "name": "Rondoudou"
+        },
+        {
+            "created_at": "2026-10-09T13:58:36.918821",
+            "id": 5,
+            "message": "Break a leg !",
+            "name": "Orion"
+        },
+        {
+            "created_at": "2026-10-08T09:17:38.030230",
+            "id": 4,
+            "message": "i love it",
+            "name": "valengoat"
+        },
+        {
+            "created_at": "2026-10-05T12:34:47.685414",
+            "id": 3,
+            "message": "OMG :3",
+            "name": "Gaspar"
+        },
+        {
+            "created_at": "2026-10-04T20:22:44.044798",
+            "id": 2,
+            "message": "Choco chaud",
+            "name": "Choco cho"
+        },
+        {
+            "created_at": "2026-09-05T09:12:00",
+            "id": 1,
+            "message": "Venez \u00e0 Evry!!! On a besoin de emo ici aussi...",
+            "name": "AlexCharp"
+        }
+    ]
+}
