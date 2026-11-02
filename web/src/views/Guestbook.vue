@@ -13,7 +13,7 @@
       <ShoutoutCard v-for="shoutout in shoutouts" :key="shoutout.id" :shoutout="shoutout" />
       <p v-if="shoutouts.length === 0" class="status">{{ $t('guestbook.empty') }}</p>
 
-      <div v-if="hasMore" class="status">
+      <div v-if="nextUrl" class="status">
         <p v-if="loadMoreError">{{ $t('guestbook.loadMoreError') }}</p>
         <button type="button" :disabled="loadingMore" @click="loadMore">
           {{
@@ -47,7 +47,8 @@ export default {
   data() {
     return {
       shoutouts: [] as Shoutout[],
-      hasMore: false,
+      // DRF cursor URL of the next (older) page, or null at the end
+      nextUrl: null as string | null,
       loading: true,
       error: false,
       loadingMore: false,
@@ -65,8 +66,8 @@ export default {
       this.error = false
       try {
         const page = await getShoutouts()
-        this.shoutouts = page.shoutouts
-        this.hasMore = page.has_more
+        this.shoutouts = page.results
+        this.nextUrl = page.next
       } catch (err) {
         console.error(err)
         this.error = true
@@ -75,17 +76,15 @@ export default {
       }
     },
 
-    // Next page = the shoutouts posted before the oldest one shown so far.
     async loadMore() {
-      const oldest = this.shoutouts.at(-1)
-      if (!oldest) return
+      if (!this.nextUrl) return
 
       this.loadingMore = true
       this.loadMoreError = false
       try {
-        const page = await getShoutouts(oldest.id)
-        this.shoutouts.push(...page.shoutouts)
-        this.hasMore = page.has_more
+        const page = await getShoutouts(this.nextUrl)
+        this.shoutouts.push(...page.results)
+        this.nextUrl = page.next
       } catch (err) {
         console.error(err)
         this.loadMoreError = true

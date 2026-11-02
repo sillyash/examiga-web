@@ -119,7 +119,7 @@ export default {
     async loadShoutouts() {
       try {
         const page = await getShoutouts()
-        this.shoutouts = page.shoutouts.slice(0, SHOUTOUT_PREVIEW_COUNT)
+        this.shoutouts = page.results.slice(0, SHOUTOUT_PREVIEW_COUNT)
       } catch (err) {
         console.error(err)
       }
