@@ -39,7 +39,7 @@ L'accès à la base de données se fait via l'API Flask en Python.
 
 L'API utilise l'ORM SQLAlchemy, ce qui permet de ne pas écrire de SQL à la main.
 
-Le remplissage de la base de données se fait via un script Python `fill_db.py`.
+Le remplissage de la base de données se fait via un script Python `api/seed.py`.
 
 ## Justification du nombre de fichiers
 
