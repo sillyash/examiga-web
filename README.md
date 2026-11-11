@@ -2,7 +2,43 @@
 
 Website for EX-AMIGA, a midwest emo band: tour dates and a fan shoutouts/guestbook.
 
-## Getting started
+## Getting started (development)
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) 22.18+ or 24.12+
+- [uv](https://docs.astral.sh/uv/getting-started/installation/), Python package manager.
+- [just](https://just.systems/man/en/packages.html), CLI tool for easy commands
+
+### Steps
+
+1. Install dependencies
+
+```bash
+just install
+```
+
+2. Seed database
+
+```bash
+just seed
+```
+
+3. Start development servers (API + frontend)
+
+```bash
+just dev
+```
+
+4. Open http://localhost:5173 in your browser.
+
+## More
+
+List commands:
+
+```bash
+just
+```
 
 - [web/README.md](web/README.md) - frontend (Vue 3 + TypeScript)
 - [api/README.md](api/README.md) - backend (Flask + SQLAlchemy)
