@@ -50,7 +50,7 @@
 <script lang="ts">
 import { ApiError, createShoutout } from '@/api'
 
-// Same limits as ShoutoutIn in api/schemas.py.
+// Keep in sync with shoutout validation in api/shows/models.py (Shoutout).
 const NAME_MAX = 80
 const MESSAGE_MAX = 500
 
@@ -100,8 +100,8 @@ export default {
         this.thanked = true
       } catch (err) {
         console.error(err)
-        // 422 from marshmallow: { json: { name: ["..."], message: ["..."] } }
-        const fields = err instanceof ApiError && err.status === 422 && err.details?.json
+        // 400 from DRF: { name: ["..."], message: ["..."] }
+        const fields = err instanceof ApiError && err.status === 400 && err.details
         if (fields && typeof fields === 'object') {
           for (const [field, messages] of Object.entries(fields)) {
             this.fieldErrors[field] = Array.isArray(messages)

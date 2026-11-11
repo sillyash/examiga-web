@@ -23,18 +23,22 @@ dev:
 web:
     cd web && npm run dev
 
-# flask debug server on :5000
+# Django API and admin development server on :5000
 api:
-    cd api && uv run python app.py
+    cd api && EXAMIGA_DEBUG=true uv run python manage.py runserver 127.0.0.1:5000
 
-# (re)seed the database
-seed:
-    cd api && uv run python seed.py
+# create tables and load api/backup/*.json
+migrate:
+    cd api && EXAMIGA_DEBUG=true uv run python manage.py migrate
 
-# delete the sqlite db and reseed from scratch
+# create an admin login
+superuser:
+    cd api && EXAMIGA_DEBUG=true uv run python manage.py createsuperuser
+
+# delete the local SQLite DB and rebuild it from migrations
 reset-db:
-    rm -f api/examiga.db
-    just seed
+    rm -f api/db.sqlite3
+    just migrate
 
 # --- quality ---
 
@@ -61,9 +65,9 @@ build:
 preview: build
     cd web && npm run preview
 
-# run the api like in production (gunicorn)
+# run the Django API and admin like in production (gunicorn)
 serve:
-    cd api && uv run gunicorn --bind 127.0.0.1:5000 app:app
+    cd api && uv run gunicorn --workers 1 --bind 127.0.0.1:5000 config.wsgi
 
 # render docs/RAPPORT.md -> docs/rapport.pdf
 pdf:

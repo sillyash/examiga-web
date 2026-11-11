@@ -14,11 +14,11 @@ Live version: https://examigaband.com
 
 ### Steps
 
-1. Extract the archive and go into the project folder
+1. Clone the repository
 
 ```bash
-tar -xzf merienne_ashley_vuejs.tar.gz
-cd merienne_ashley_vuejs
+git clone https://github.com/sillyash/examiga-web.git
+cd examiga-web
 ```
 
 2. Install dependencies
@@ -27,10 +27,10 @@ cd merienne_ashley_vuejs
 just install
 ```
 
-3. Seed database
+3. Create the database (migrations load `api/backup/*.json`)
 
 ```bash
-just seed
+just migrate
 ```
 
 4. Start development servers (API + frontend)
@@ -39,7 +39,10 @@ just seed
 just dev
 ```
 
-5. Open http://localhost:5173 in your browser.
+5. Open http://localhost:5173 in your browser. The admin is at http://localhost:5000/admin/
+   (create a login with `just superuser`).
+
+The graded school submission (Flask API, see `docs/rapport.pdf`) is tagged `rapport`.
 
 ## More
 
@@ -50,7 +53,7 @@ just
 ```
 
 - [web/README.md](web/README.md) - frontend (Vue 3 + TypeScript)
-- [api/README.md](api/README.md) - backend (Flask + SQLAlchemy)
+- [api/README.md](api/README.md) - backend (Django API + admin)
 - [DEPLOYMENT.md](DEPLOYMENT.md) - hosting on GitHub Pages / a Raspberry Pi
 
 ## License

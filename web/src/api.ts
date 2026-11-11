@@ -1,4 +1,4 @@
-// Typed client for the EX-AMIGA API (see ../api/app.py and ../api/schemas.py).
+// Typed client for the EX-AMIGA API (see ../api/shows/api.py).
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? ''
 
 export interface TourDate {
@@ -23,10 +23,11 @@ export interface Shoutout {
   created_at: string
 }
 
+// DRF cursor page
 export interface ShoutoutPage {
-  shoutouts: Shoutout[]
-  // true if older shoutouts are left to load
-  has_more: boolean
+  results: Shoutout[]
+  // URL of the next (older) page, or null if there's none left
+  next: string | null
 }
 
 export interface ShoutoutInput {
@@ -38,7 +39,7 @@ export interface ShoutoutInput {
 
 export class ApiError extends Error {
   status: number
-  // marshmallow validation errors, e.g. { json: { name: ["..."] } }
+  // DRF validation errors, e.g. { name: ["..."] }
   details?: Record<string, unknown>
 
   constructor(status: number, message: string, details?: Record<string, unknown>) {
@@ -49,15 +50,15 @@ export class ApiError extends Error {
   }
 }
 
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+async function request<T>(url: string, init?: RequestInit): Promise<T> {
+  const response = await fetch(url.startsWith('http') ? url : `${API_BASE_URL}${url}`, {
     headers: { 'Content-Type': 'application/json' },
     ...init,
   })
 
   if (!response.ok) {
     const body = await response.json().catch(() => undefined)
-    throw new ApiError(response.status, body?.message ?? response.statusText, body?.detail)
+    throw new ApiError(response.status, body?.detail ?? response.statusText, body)
   }
 
   return response.json() as Promise<T>
@@ -69,11 +70,11 @@ export function getTourDates(): Promise<TourDate[]> {
 }
 
 /**
- * List fan shoutouts, newest first, 10 at a time. Pass the id of the last shoutout
- * already shown as `before` to get the next (older) page.
+ * List fan shoutouts, newest first, 10 at a time. Pass a page's `next` URL to get
+ * the next (older) page.
  */
-export function getShoutouts(before?: number): Promise<ShoutoutPage> {
-  return request(before === undefined ? '/api/shoutouts' : `/api/shoutouts?before=${before}`)
+export function getShoutouts(next?: string): Promise<ShoutoutPage> {
+  return request(next ?? '/api/shoutouts')
 }
 
 /** Leave a shoutout for the band. */
