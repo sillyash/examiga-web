@@ -4,9 +4,9 @@ Website for EX-AMIGA, a midwest emo band: tour dates and a fan shoutouts/guestbo
 
 ## Getting started
 
-- [web/README.md](web/README.md) — frontend (Vue 3 + TypeScript)
-- [api/README.md](api/README.md) — backend (Flask + SQLAlchemy)
-- [DEPLOYMENT.md](DEPLOYMENT.md) — hosting on GitHub Pages / a Raspberry Pi
+- [web/README.md](web/README.md) - frontend (Vue 3 + TypeScript)
+- [api/README.md](api/README.md) - backend (Flask + SQLAlchemy)
+- [DEPLOYMENT.md](DEPLOYMENT.md) - hosting on GitHub Pages / a Raspberry Pi
 
 ## License
 

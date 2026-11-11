@@ -27,7 +27,7 @@
     <img class="hero-photo" src="/band.jpg" style="width: min(100%, 35rem);" :alt="$t('home.bandPhotoAlt')" />
     <ul class="members">
       <li v-for="member in members" :key="member.name">
-        <span class="member-name">{{ member.name }}</span> —
+        <span class="member-name">{{ member.name }}</span> -
         {{ member.roles.map((role) => $t(`home.roles.${role}`)).join(', ') }}
       </li>
     </ul>

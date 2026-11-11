@@ -2,7 +2,7 @@
   <article class="note">
     <p class="message">{{ shoutout.message }}</p>
     <p class="signature">
-      — <span class="name">{{ shoutout.name }}</span> ·
+      - <span class="name">{{ shoutout.name }}</span> ·
       <time :datetime="shoutout.created_at">{{ date }}</time>
     </p>
   </article>
