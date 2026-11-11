@@ -29,10 +29,12 @@ rsync -a \
   --exclude '*.db' \
   --exclude '.nfs*' \
   --exclude '.git' \
-  --exclude 'CLAUDE.md' \
   --exclude 'docs/TODO.md' \
   --exclude '*.tar.gz' \
   --exclude 'sujet.pdf' \
+  --exclude '.vscode' \
+  --exclude '.editorconfig' \
+  --exclude '.gitattributes' \
   ./ "$DEST/"
 
 echo "==> Archiving to $OUT..."
@@ -48,6 +50,8 @@ if [ "$SIZE_BYTES" -gt "$LIMIT_BYTES" ]; then
   echo "WARNING: archive exceeds the 3MB limit from the assignment spec!" >&2
 fi
 
-echo "==> File counts (informational only - extra tooling/config files can be justified in the report):"
-echo "    web/src (client):   $(find "$DEST/web/src" -type f | wc -l)"
-echo "    api (server, code): $(find "$DEST/api" -type f ! -name '*.lock' | wc -l)"
+# Non-binary files, as counted by the assignment (client <= 15, server <= 10).
+count_text() { find "$1" -type f -exec grep -Il . {} + | wc -l; }
+echo "==> Non-binary file counts (limits: client 15, server 10; overflow justified in the report):"
+echo "    web/     (client): $(count_text "$DEST/web")  (of which src/: $(count_text "$DEST/web/src"))"
+echo "    api/     (server): $(count_text "$DEST/api")"
