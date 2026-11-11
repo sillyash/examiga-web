@@ -2,6 +2,8 @@
 
 Website for EX-AMIGA, a midwest emo band: tour dates and a fan shoutouts/guestbook.
 
+Live version: https://examigaband.com
+
 ## Getting started (development)
 
 ### Prerequisites
@@ -12,25 +14,32 @@ Website for EX-AMIGA, a midwest emo band: tour dates and a fan shoutouts/guestbo
 
 ### Steps
 
-1. Install dependencies
+1. Extract the archive and go into the project folder
+
+```bash
+tar -xzf merienne_ashley_vuejs.tar.gz
+cd merienne_ashley_vuejs
+```
+
+2. Install dependencies
 
 ```bash
 just install
 ```
 
-2. Seed database
+3. Seed database
 
 ```bash
 just seed
 ```
 
-3. Start development servers (API + frontend)
+4. Start development servers (API + frontend)
 
 ```bash
 just dev
 ```
 
-4. Open http://localhost:5173 in your browser.
+5. Open http://localhost:5173 in your browser.
 
 ## More
 
